@@ -3,6 +3,8 @@
 using namespace FAST;
 using namespace compiler;
 using namespace std;
+using namespace to_assembler;
+using namespace to_binary;
 
 Compiler::Compiler(char* file_path, char* mode){
   file=file_path;
@@ -16,7 +18,7 @@ void Compiler::set_output_file(char* output_file){
 int Compiler::compile(){
   ifstream the_file;
   try{
-    the_file.open(file)
+    the_file.open(file);
   }catch(){
     return -1;
   }
@@ -34,10 +36,31 @@ int Compiler::compile(){
   return -1;
 }
 
-int Compiler::run(){
-
+//Fix with output type
+void Compliler::write_data(output){
+  ofstream write_file;
+  write_file.open(output, ios::out|ios::binary);
+  write_file.write((char*)&output, sizeof(output));
+  write_file.close();
 }
 
-int Compiler::exe(){
 
+int Compiler::run(){
+  if(exe(cache=true)==0){
+    system("./cache");
+    remove("cache");
+    return 0;
+  }
+  return -1;
+}
+
+int Compiler::exe(bool cache=false){
+  if(cache){output=cache;}
+  ToAssembler assembler(data);
+  if(assembler.check_output()==0){
+    ToBinary binary(assembler.get_output());
+    write_data(binary.get_output());
+    return 0;
+  }
+  return -1;
 }
