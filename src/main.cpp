@@ -26,6 +26,14 @@ https://k-d-g.github.io/projects/c++/FAST/index.html
 This compiler is going to be used for implementation in an operating system
 (Not as the source code but as a language that can be used to program features for it)
 The operating system is not going to be shown for some time.
+
+When compiling to machine code the compiler uses two major steps (these are not the typical steps however the typical steps may be followed)
+These steps are:
+  Convert the code to assembly with NASM syntax
+  Convert the code to machine code
+
+When compiling the assembly to machine code the compilation process is done by this software and not by NASM.
+The only similarity is that it uses NASM syntax
  */
 #include <executor.h>
 
