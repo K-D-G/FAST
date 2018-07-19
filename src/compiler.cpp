@@ -37,7 +37,7 @@ int Compiler::compile(){
 }
 
 //Fix with output type
-void Compliler::write_data(output){
+void Compliler::write_data(byte* output){
   ofstream write_file;
   write_file.open(output, ios::out|ios::binary);
   write_file.write((char*)&output, sizeof(output));
