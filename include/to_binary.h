@@ -4,10 +4,10 @@
 #include <map>
 #include <string>
 
-typedef std::bitset<8> byte;
-
 namespace FAST{
   namespace to_binary{
+    typedef std::bitset<8> byte;
+
     class ToBinary{
     protected:
       byte* output;

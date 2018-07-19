@@ -19,7 +19,7 @@ namespace FAST{
       Compiler(char* file_path, char* mode);
       void set_output_file(char* output_file);
       int compile();
-      void write_data();
+      void write_data(to_binary::byte* output);
       int run();
       int exe(bool cache=false);
     };
